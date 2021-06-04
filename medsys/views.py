@@ -1,9 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Create your views here.
 
 def index(request):
-    return render(request, 'medsys/index.html')
+    if request.user.is_authenticated:
+        return redirect('core')
+    return render(request, 'index.html')
 
 def new_request(request):
-    return render(request, 'medsys/new_request.html')
+    return render(request, 'core/new_request.html')

@@ -43,14 +43,12 @@ class UsernameValidationView(View):
         return JsonResponse({'username_valid': True})
 
 
-class RegistrationView(View):
-    def get(self, request):
-        return render(request, 'authentication/register.html')
-
 
 
 class RegistrationView(View):
     def get(self, request):
+        if request.user.is_authenticated:
+            return redirect('core')
         return render(request, 'authentication/register.html')
 
     def post(self, request):
@@ -130,9 +128,12 @@ class VerificationView(View):
 
 class LoginView(View):
     def get(self, request):
+        if request.user.is_authenticated:
+            return redirect('core')
         return render(request, 'authentication/login.html')
 
     def post(self, request):
+
         username = request.POST['username']
         password = request.POST['password']
 
@@ -144,7 +145,7 @@ class LoginView(View):
                     auth.login(request, user)
                     messages.success(request, 'Welcome, ' +
                                      user.username+' you are now logged in')
-                    return redirect('medsys')
+                    return redirect('core')
                 messages.error(
                     request, 'Account is not active,please check your email')
                 return render(request, 'authentication/login.html')

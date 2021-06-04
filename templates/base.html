@@ -18,17 +18,21 @@
   </head>
   <body>
 
-<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Company name</a>
+<header class="navbar navbar-dark sticky-top bg-primary flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="/"><img src="//images01.nicepage.com/db/72/db72a3068b3c2d43f6ba3f840223e377.png" class="u-logo-image u-logo-image-1" style="width: 50%"></a>
   <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-    <form class="form-inline my-2 my-lg-0">
-  <input class="form-control-dark w-40" type="text" placeholder="Nombre de usuario" aria-label="Nombre de usuario">
-  <input class="form-control-dark w-40" type="text" placeholder="Contraseña" aria-label="Contraseña">
-      <a class="btn btn-primary" role="button" type="submit">Entrar</a>
+          <form action="{% url  'logout' %}" method="POST">
+            {% csrf_token %}
+            <input
+              class="btn btn-primary"
+              type="submit"
+              value="Salir"
+            />
+          </form>
 
-</form>
+
 
 </header>
 
