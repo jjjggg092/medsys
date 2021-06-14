@@ -7,13 +7,13 @@
       <li class="nav-item">
         <a class="nav-link active" aria-current="page" href="#">
           <span data-feather="home"></span>
-          Dashboard
+          Panel de Doctor
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">
           <span data-feather="file"></span>
-          Orders
+          Buscar Paciente
         </a>
       </li>
       <li class="nav-item">
@@ -68,10 +68,22 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">
-          <span data-feather="file-text"></span>
-          Year-end sale
-        </a>
+        <form action="{% url 'logout' %}" method="post">{% csrf_token %}
+      <a class="nav-link" href="" method="POST">
+        <span data-feather="file-text"> <input
+            style="background: none!important;
+border: none;
+padding: 0!important;
+/*optional*/
+font-family: arial, sans-serif;
+/*input has OS specific font-family*/
+color: #069;
+cursor: pointer;"
+              type="submit"
+              value="Salir"     /></span>
+
+      </a>
+    </form>
       </li>
     </ul>
   </div>

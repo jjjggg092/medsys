@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'medsys',
     'core',
+    'authentication'
 ]
 
 MIDDLEWARE = [
@@ -139,3 +140,5 @@ EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
 EMAIL_PORT = 587
 EMAIL_HOST_PASSWORD = '123password456'
+
+AUTH_USER_MODEL = 'authentication.User'

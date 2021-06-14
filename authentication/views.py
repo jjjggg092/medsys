@@ -2,10 +2,6 @@ from django.shortcuts import render, redirect
 from django.views import View
 import json
 from django.http import JsonResponse
-from django.contrib.auth.models import User
-import json
-from django.http import JsonResponse
-from django.contrib.auth.models import User
 from validate_email import validate_email
 from django.contrib import messages
 from django.core.mail import EmailMessage
@@ -18,14 +14,14 @@ from django.template.loader import render_to_string
 from .utils import account_activation_token
 from django.urls import reverse
 from django.contrib import auth
-
-
+from django.contrib.auth import get_user_model
 # Create your views here.
 
 class EmailValidationView(View):
     def post(self, request):
         data = json.loads(request.body)
         email = data['email']
+        User = get_user_model()
         if not validate_email(email):
             return JsonResponse({'email_error': 'Email no válido'}, status=400)
         if User.objects.filter(email=email).exists():
@@ -36,6 +32,7 @@ class UsernameValidationView(View):
     def post(self, request):
         data = json.loads(request.body)
         username = data['username']
+        User = get_user_model()
         if not str(username).isalnum():
             return JsonResponse({'username_error': 'Debe contener unicamente letras y números'}, status=400)
         if User.objects.filter(username=username).exists():
@@ -55,7 +52,7 @@ class RegistrationView(View):
         # GET USER DATA
         # VALIDATE
         # create a user account
-
+        User = get_user_model()
         username = request.POST['username']
         email = request.POST['email']
         password = request.POST['password']
@@ -104,6 +101,7 @@ class RegistrationView(View):
 
 class VerificationView(View):
     def get(self, request, uidb64, token):
+        User = get_user_model()
         try:
             id = force_text(urlsafe_base64_decode(uidb64))
             user = User.objects.get(pk=id)
@@ -133,13 +131,14 @@ class LoginView(View):
         return render(request, 'authentication/login.html')
 
     def post(self, request):
-
+        User = get_user_model()
         username = request.POST['username']
         password = request.POST['password']
 
         if username and password:
             user = auth.authenticate(username=username, password=password)
-
+            print(type(username), type(password))
+            print(auth.authenticate(username=username, password=password))
             if user:
                 if user.is_active:
                     auth.login(request, user)
