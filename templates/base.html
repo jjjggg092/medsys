@@ -44,6 +44,21 @@
 
 
 </header>
+
+
+<div class="container-fluid">
+
+
+{% if is_doctor %}
+     {% include 'partials/_sidebar_doctor.html' %}
+  {% elif is_patient %}
+     {% include 'partials/_sidebar_patient.html' %}
+  {% elif is_secre %}
+     {% include 'partials/_sidebar_secre.html' %}
+{% endif %}
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+
 {% block content %}
 
 

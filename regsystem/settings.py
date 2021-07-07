@@ -78,11 +78,14 @@ WSGI_APPLICATION = 'regsystem.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'med-db',
-        'USER':  'postgres',
-        'PASSWORD': '1234.',
-        'HOST': '127.0.0.1',
+#        'ENGINE': 'django.db.backends.postgresql',
+#        'NAME': 'med-db',
+#        'USER':  'postgres',
+#        'PASSWORD': '1234.',
+#        'HOST': '127.0.0.1',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR + '/' 'db.sqlite3',
+
         }
 }
 

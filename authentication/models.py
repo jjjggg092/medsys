@@ -7,7 +7,7 @@ class User(AbstractUser):
   USER_TYPE_CHOICES = (
       (1, 'doctor'),
       (2, 'paciente'),
-      (3, 'enfermera')
+      (3, 'sectretario')
   )
 
   user_type = models.PositiveSmallIntegerField(choices=USER_TYPE_CHOICES, null=True, default=2)
@@ -42,6 +42,19 @@ class Paciente(models.Model):
 
 class Doctor(models.Model):
     creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name='el_doctor')
+    nacimiento = models.DateField(blank=True)
+    cedula = models.PositiveIntegerField()
+    sexo = models.CharField(max_length=10)
+    ciudad = models.CharField(max_length=20)
+    barrio = models.CharField(max_length=20)
+    telefono = models.PositiveIntegerField()
+    correo = models.EmailField()
+
+    def __str__(self):
+        return self.correo
+
+class Secretario(models.Model):
+    creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name='el_secretario')
     nacimiento = models.DateField(blank=True)
     cedula = models.PositiveIntegerField()
     sexo = models.CharField(max_length=10)

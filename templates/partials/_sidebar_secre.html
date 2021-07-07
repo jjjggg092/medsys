@@ -7,19 +7,17 @@
       <li class="nav-item">
         <a class="nav-link active" aria-current="page" href="#">
           <span data-feather="home"></span>
-          Panel de Doctor
+          Panel del secretario
         </a>
       </li>
-      <form action="{% url 'users_info' %}" method="post">{% csrf_token %}
-    <a class="nav-link" href="" method="GET">
-      <span data-feather="file-text">
-        <input  style="background: none!important; border: none; padding: 0!important; /*optional*/ font-family: arial, sans-serif; /*input has OS specific font-family*/ color: #069; cursor: pointer;"  type="submit" value="Listar Pacients"/>
-
       <li class="nav-item">
-        <a class="nav-link" href="#">
-          <span data-feather="file"></span>
-          Buscar Paciente
-        </a>
+        <form action="{% url 'users_info' %}" method="post">{% csrf_token %}
+      <a class="nav-link" href="" method="GET">
+        <span data-feather="file-text">
+          <input  style="background: none!important; border: none; padding: 0!important; /*optional*/ font-family: arial, sans-serif; /*input has OS specific font-family*/ color: #069; cursor: pointer;"  type="submit" value="Listar Pacients"/>
+        </span>
+      </a>
+    </form>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">
