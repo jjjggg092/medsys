@@ -1,49 +1,186 @@
 {% extends 'core/index.html' %}
 {% block content %}
+<div class="row">
+<div class="col-md-6">
+  <button type="button" id="nuevoPaciente" class="btn btn-info" name="button">Nuevo Paciente</button>
+</div>
+<div class="col-md-6">
+  <button type="button" id="historialPacientes" class="btn btn-info" name="button">Historial De Pacientes</button>
+</div>
+</div>
 <h2>Pacientes</h2>
-<div class="table-responsive">
-<table class="table table-hover">
-  <thead >
-    <tr class="bg-primary">
-      <th scope="col">ID</th>
-      <th scope="col">Nombres</th>
-      <th scope="col">Apellidos</th>
-      <th scope="col">Sexo</th>
-      <th scope="col">Cédula</th>
-      <th scope="col">Ciudad</th>
-      <th scope="col">Dirección</th>
-      <th scope="col">Aseguradora</th>
-      <th scope="col">Ocupacion</th>
-      <th scope="col">Tipo de Sangre</th>
-      <th scope="col">Número de Hijos</th>
-      <th scope="col">Fecha de Nacimiento</th>
-      <th scope="col">Correo Electronico</th>
-      <th scope="col">Estado Civil</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for patient in patients %}
-    <tr class='clickable-row' data-href="{% url 'update_profile' patient.id %}" method="get">
-      <th scope="row">{{ patient.id}}</th>
-      <td>{{ patient.first_name }}</td>
-      <td>{{ patient.last_name }}</td>
-      <td>{{ patient }}</td>
-      <th scope="row">{{ patient.id}}</th>
-      <td>{{ patient }}</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-      <th scope="row">{{ patient.id}}</th>
-      <td>O+</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-      <td>{{ patient.email }}</td>
-      <td>absdadsvsdasbba</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+<div id="users-table" style='display: none'>
+  <div class="table-responsive">
+  <table class="table table-hover">
+    <thead>
+      <tr class="bg-primary">
+        <th scope="col">ID</th>
+        <th scope="col">Nombres</th>
+        <th scope="col">Apellidos</th>
+        <th scope="col">Sexo</th>
+        <th scope="col">Cédula</th>
+        <th scope="col">Ciudad</th>
+        <th scope="col">Dirección</th>
+        <th scope="col">Aseguradora</th>
+        <th scope="col">Ocupacion</th>
+        <th scope="col">Tipo de Sangre</th>
+        <th scope="col">Número de Hijos</th>
+        <th scope="col">Fecha de Nacimiento</th>
+        <th scope="col">Correo Electronico</th>
+        <th scope="col">Estado Civil</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for patient in patients %}
+      <tr class='clickable-row' data-href="{% url 'update_profile' patient.id %}" method="get">
+        <th scope="row">Editar</th>
+        <td>{{ patient.first_name }}</td>
+        <td>{{ patient.last_name }}</td>
+        <td>{{ patient }}</td>
+        <th scope="row">{{ patient.id}}</th>
+        <td>{{ patient }}</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+        <th scope="row">{{ patient.id}}</th>
+        <td>O+</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+        <td>{{ patient.email }}</td>
+        <td>absdadsvsdasbba</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  </div>
 </div>
 
+<div id="info-form" style='display: none'>
+  <form class="needs-validation" action="" method="post">
+    {% csrf_token %}
+    <div class="row g-3">
+      <div class="col-md-4">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="">Nombres y Apellidos: </span>
+      </div>
+      <input name='first-name' type="text" class="form-control" placeholder="Nombres" value="{{ user.first_name }}">
+      <input name='last-name' type="text" class="form-control" placeholder="Apellidos" value="{{ user.last_name }}">
+    </div>
+    <div class="col-md-4">
+      <div class="input-group-prepend">
+        <label class="input-group-text" for="inputGroupSelect01">Sexo: </label>
+      </div>
+      <select name='sexo' class="custom-select " id="inputGroupSelect01">
+        <option value="1">Masculino</option>
+        <option value="2">Femenino</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <div class="input-group-prepend">
+        <label class="input-group-text" for="inputGroupSelect01">Cédula: </label>
+      </div>
+      <input name='ci' type="text" class="form-control" placeholder="Cedula de Identitdad">
+    </div>
+  </div>
+
+    <div class="row g-3">
+        <div class="col-md-4">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">Ciudad: </label>
+          </div>
+          <input name='ciudad' type="text" class="form-control" placeholder="Ciudad">
+          </div>
+
+          <div class="col-md-4">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="inputGroupSelect01">Direccion: </label>
+            </div>
+            <input name='direccion' type="text" class="form-control" placeholder="Direccion">
+          </div>
+
+          <div class="col-md-4">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="inputGroupSelect01">Aseguradora: </label>
+            </div>
+            <input name='aseguradora' type="text" class="form-control" placeholder="Aseguradora">
+          </div>
+    </div>
+    <div class="row g-3">
+
+      <div class="col-md-4">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="inputGroupSelect01">Ocupacion: </label>
+        </div>
+        <input name='ocupacion' type="text" class="form-control" placeholder="Ocupacion">
+      </div>
+
+      <div class="col-md-4">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="inputGroupSelect01">Grupo Sanguineo: </label>
+        </div>
+        <input name='sangre' type="text" class="form-control" placeholder="Grupo Sanguineo">
+      </div>
+
+      <div class="col-md-4">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="inputGroupSelect01">Numero de hijos: </label>
+        </div>
+        <input name='num_hijos' type="text" class="form-control" placeholder="Numero de hijos">
+      </div>
+
+    </div>
+
+    <div class="row g-3">
+      <div class="col-md-4">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="inputGroupSelect01">Fecha de Nacimiento: </label>
+        </div>
+        <input name='b-date' type="date" class="form-control" placeholder="Fecha de Nacimiento">
+      </div>
+      <div class="col-md-4">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="inputGroupSelect01">Correo Electronico: </label>
+        </div>
+        <input name='email' type="email" class="form-control" placeholder="Correo Electronico" value="{{ user.email }}">
+      </div>
+      <div class="col-md-4">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="inputGroupSelect01">Estado Civil: </label>
+        </div>
+        <input name='estado_civil' type="text" class="form-control" placeholder="Estado Civil">
+      </div>
+    </div>
+    <div class="row g-3">
+      <div class="col-md-12 text-center">
+        <input type="submit" value="Agregar Paciente" class="btn btn-block btn-primary submit-btn"/>
+      </div>
+    </div>
+
+  </form>
+</div>
+<script type="text/javascript">
+  const historialButtom = document.querySelector("#historialPacientes");
+  const newButtom = document.querySelector("#nuevoPaciente");
+  const tableBlock = document.querySelector("#users-table");
+  const infoBlock = document.querySelector("#info-form");
+  const showFormNewUser = (e) => {
+    if (infoBlock.style.display === 'none') {
+      infoBlock.style.display = "block";
+      tableBlock.style.display = "none";
+      newButtom.addAttribute("disabled");
+      historialButtom.removeAttribute("disabled");
+    }
+  };
+  const showTableUsers = (e) => {
+    if (tableBlock.style.display === 'none') {
+      tableBlock.style.display = "block";
+      infoBlock.style.display = "none";
+      historialButtom.addAttribute("disabled");
+      newButtom.removeAttribute("disabled");
+    }
+  };
+  newButtom.addEventListener("click", showFormNewUser);
+  historialButtom.addEventListener("click", showTableUsers);
+</script>
 
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script type="text/javascript">

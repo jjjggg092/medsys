@@ -1,5 +1,10 @@
 {% load static %}
 
+<style media="screen">
+  a.nav-link:hover{
+     color: orange;
+  }
+</style>
 
 <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
   <div class="position-sticky pt-3">
@@ -10,83 +15,42 @@
           Panel de Doctor
         </a>
       </li>
-      <form action="{% url 'users_info' %}" method="post">{% csrf_token %}
-    <a class="nav-link" href="" method="GET">
-      <span data-feather="file-text">
-        <input  style="background: none!important; border: none; padding: 0!important; /*optional*/ font-family: arial, sans-serif; /*input has OS specific font-family*/ color: #069; cursor: pointer;"  type="submit" value="Listar Pacients"/>
-
-      <li class="nav-item">
-        <a class="nav-link" href="#">
+      <li class="nav-item item-nav">
+        <a class="nav-link" href="{% url 'users_info' %}">
           <span data-feather="file"></span>
-          Buscar Paciente
+          Pacientes
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <span data-feather="shopping-cart"></span>
-          Products
+      <li class="nav-item item-nav">
+        <a class="nav-link" href="{% url 'consultas' %}">
+          <span data-feather="file"></span>
+          Consultas
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <span data-feather="users"></span>
-          Customers
+      <li class="nav-item item-nav">
+        <a class="nav-link" href="{% url 'recetas' %}">
+          <span data-feather="file"></span>
+          Recetas
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <span data-feather="bar-chart-2"></span>
-          Reports
+      <li class="nav-item item-nav">
+        <a class="nav-link" href="{% url 'citas' %}">
+          <span data-feather="file"></span>
+          Citas
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <span data-feather="layers"></span>
-          Integrations
+      <li class="nav-item item-nav">
+        <a class="nav-link" href="{% url 'equipos' %}">
+          <span data-feather="file"></span>
+          Equipos
         </a>
       </li>
-    </ul>
-
-    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-      <span>Saved reports</span>
-      <a class="link-secondary" href="#" aria-label="Add a new report">
-        <span data-feather="plus-circle"></span>
-      </a>
-    </h6>
-    <ul class="nav flex-column mb-2">
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <span data-feather="file-text"></span>
-          Current month
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <span data-feather="file-text"></span>
-          Last quarter
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <span data-feather="file-text"></span>
-          Social engagement
-        </a>
-      </li>
-      <li class="nav-item">
+      <hr>
+      <li class="nav-item item-nav">
         <form action="{% url 'logout' %}" method="post">{% csrf_token %}
       <a class="nav-link" href="" method="POST">
         <span data-feather="file-text"> <input
-            style="background: none!important;
-border: none;
-padding: 0!important;
-/*optional*/
-font-family: arial, sans-serif;
-/*input has OS specific font-family*/
-color: #069;
-cursor: pointer;"
-              type="submit"
-              value="Salir"     /></span>
-
+            style="background: none;border: none;padding: 0;/*optional*/font-family: arial, sans-serif;/*input has OS specific font-family*/color: #069;cursor: pointer;" type="submit" value="Salir"/></span>
       </a>
     </form>
       </li>

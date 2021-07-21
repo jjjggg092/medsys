@@ -1,0 +1,72 @@
+{% extends 'core/index.html' %}
+{% block content %}
+<div class="row">
+<div class="col-md-4">
+  <button type="button" id='buttonCita' class="btn btn-info" name="button">Nueva Cita</button>
+</div>
+<div class="col-md-4">
+  <button type="button" id='buttonHistorial' class="btn btn-info" name="button">Historial De Citas</button>
+</div>
+<div class="col-md-4">
+  <button type="button" id='buttonCalendario' class="btn btn-info" name="button">Calendario</button>
+</div>
+</div>
+<div id="nuevaCita" style='display: none'>
+  <h1>Bloque de Nueva Cita</h1>
+
+</div>
+<div id="historialCitas" style='display: none'>
+  <h1>Bloque de Historial De Citas</h1>
+
+</div>
+<div id="calendario" style='display: none'>
+  <h1>Bloque de Calendario</h1>
+
+</div>
+<a href="{% url 'equipos' %}">equipos</a>
+
+
+<script type="text/javascript">
+  const buttonCita = document.querySelector("#buttonCita");
+  const buttonHistorial = document.querySelector("#buttonHistorial");
+  const buttonCalendario = document.querySelector("#buttonCalendario");
+
+  const citaBlock = document.querySelector("#nuevaCita");
+  const historialBlock = document.querySelector("#historialCitas");
+  const calendarioBlock = document.querySelector("#calendario");
+  const showCita = (e) => {
+    if (citaBlock.style.display === 'none') {
+      citaBlock.style.display = "block";
+      historialBlock.style.display = "none";
+      calendarioBlock.style.display = "none";
+      buttonCita.addAttribute("disabled");
+      buttonHistorial.removeAttribute("disabled");
+      buttonCalendario.removeAttribute("disabled");
+    }
+  };
+  const showHistorial = (e) => {
+    if (historialBlock.style.display === 'none') {
+      citaBlock.style.display = "none";
+      historialBlock.style.display = "block";
+      calendarioBlock.style.display = "none";
+      buttonHistorial.addAttribute("disabled");
+      buttonCita.removeAttribute("disabled");
+      buttonCalendario.removeAttribute("disabled");
+    }
+  };
+  const showCalendario = (e) => {
+    if (calendarioBlock.style.display === 'none') {
+      citaBlock.style.display = "none";
+      historialBlock.style.display = "none";
+      calendarioBlock.style.display = "block";
+      buttonCalendario.addAttribute("disabled");
+      buttonCita.removeAttribute("disabled");
+      buttonHistorial.removeAttribute("disabled");
+    }
+  };
+  buttonCita.addEventListener("click", showCita);
+  buttonHistorial.addEventListener("click", showHistorial);
+  buttonCalendario.addEventListener("click", showCalendario);
+</script>
+
+{% endblock %}

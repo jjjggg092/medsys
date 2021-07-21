@@ -1,0 +1,94 @@
+{% extends 'core/index.html' %}
+{% block content %}
+<div class="row">
+  <div class="col-md-3">
+    <button type="button" id='buttonEquipo' class="btn btn-info" name="button">Nuevo Equipo</button>
+  </div>
+  <div class="col-md-3">
+    <button type="button" id='buttonHistorial' class="btn btn-info" name="button">Historial De Equipos</button>
+  </div>
+  <div class="col-md-3">
+    <button type="button" id='buttonInventarios' class="btn btn-info" name="button">Inventarios</button>
+  </div>
+  <div class="col-md-3">
+    <button type="button" id='buttonMantenimiento' class="btn btn-info" name="button">Mantenimiento y Contacto de Equipos</button>
+  </div>
+</div>
+<div id="nuevoEquipo" style='display:none'>
+  <h1>Bloque de Nuevo Equipo</h1>
+</div>
+<div id="equiposHistorial" style='display:none'>
+  <h1>Bloque de Nuevo Historial De Equipos</h1>
+</div>
+<div id="inventarios" style='display:none'>
+  <h1>Bloque de Nuevo Inventarios</h1>
+</div>
+<div id="mantenimientoEquipos" style='display:none'>
+  <h1>Bloque de Nuevo Mantenimiento y Contacto de Equipos</h1>
+</div>
+
+<script type="text/javascript">
+  const buttonEquipo = document.querySelector("#buttonEquipo");
+  const buttonHistorial = document.querySelector("#buttonHistorial");
+  const buttonInventarios = document.querySelector("#buttonInventarios");
+  const buttonMantenimiento = document.querySelector("#buttonMantenimiento");
+
+  const equipoBlock = document.querySelector("#nuevoEquipo");
+  const historialBlock = document.querySelector("#equiposHistorial");
+  const inventarioBlock = document.querySelector("#inventarios");
+  const mantenimientoBlock = document.querySelector("#mantenimientoEquipos");
+  const showEquipo = (e) => {
+    if (equipoBlock.style.display === 'none') {
+      equipoBlock.style.display = "block";
+      historialBlock.style.display = "none";
+      inventarioBlock.style.display = "none";
+      mantenimientoBlock.style.display = "none";
+      buttonEquipo.addAttribute("disabled");
+      buttonHistorial.removeAttribute("disabled");
+      buttonInventarios.removeAttribute("disabled");
+      mantenimientoBlock.removeAttribute("disabled");
+    }
+  };
+  const showHistorial = (e) => {
+    if (historialBlock.style.display === 'none') {
+      equipoBlock.style.display = "none";
+      historialBlock.style.display = "block";
+      inventarioBlock.style.display = "none";
+      mantenimientoBlock.style.display = "none";
+      buttonHistorial.addAttribute("disabled");
+      buttonEquipo.removeAttribute("disabled");
+      buttonInventarios.removeAttribute("disabled");
+      mantenimientoBlock.removeAttribute("disabled");
+    }
+  };
+  const showInventario = (e) => {
+    if (inventarioBlock.style.display === 'none') {
+      equipoBlock.style.display = "none";
+      historialBlock.style.display = "none";
+      inventarioBlock.style.display = "block";
+      mantenimientoBlock.style.display = "none";
+      buttonInventarios.addAttribute("disabled");
+      buttonEquipo.removeAttribute("disabled");
+      buttonHistorial.removeAttribute("disabled");
+      mantenimientoBlock.removeAttribute("disabled");
+    }
+  };
+  const showMantenimiento = (e) => {
+    if (mantenimientoBlock.style.display === 'none') {
+      equipoBlock.style.display = "none";
+      historialBlock.style.display = "none";
+      inventarioBlock.style.display = "none";
+      mantenimientoBlock.style.display = "block";
+      mantenimientoBlock.addAttribute("disabled");
+      buttonEquipo.removeAttribute("disabled");
+      buttonHistorial.removeAttribute("disabled");
+      buttonInventarios.removeAttribute("disabled");
+    }
+  };
+  buttonEquipo.addEventListener("click", showEquipo);
+  buttonHistorial.addEventListener("click", showHistorial);
+  buttonInventarios.addEventListener("click", showInventario);
+  buttonMantenimiento.addEventListener("click", showMantenimiento);
+</script>
+
+{% endblock %}

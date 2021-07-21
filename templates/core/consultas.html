@@ -1,0 +1,44 @@
+{% extends 'core/index.html' %}
+{% block content %}
+<div class="row">
+  <div class="col-md-6">
+    <button type="button" id='buttonConsulta' class="btn btn-info" name="button">Nueva Consulta</button>
+  </div>
+  <div class="col-md-6">
+    <button type="button" id='buttonHistorial' class="btn btn-info" name="button">Historial De Consultas</button>
+  </div>
+</div>
+<div id="nuevaConsulta" style='display: none'>
+  <h1>Bloque de Nueva Consulta</h1>
+</div>
+<div id="historialConsultas" style='display: none'>
+  <h1>Bloque de Historial De Consultas</h1>
+</div>
+<script type="text/javascript">
+const buttonConsulta = document.querySelector("#buttonConsulta");
+const buttonHistorial = document.querySelector("#buttonHistorial");
+
+const consulataBlock = document.querySelector("#nuevaConsulta");
+const historialBlock = document.querySelector("#historialConsultas");
+const showConsulta = (e) => {
+  if (consulataBlock.style.display === 'none') {
+    consulataBlock.style.display = "block";
+    historialBlock.style.display = "none";
+    buttonConsulta.addAttribute("disabled");
+    buttonHistorial.removeAttribute("disabled");
+  }
+};
+const showHistorial = (e) => {
+  if (historialBlock.style.display === 'none') {
+    consulataBlock.style.display = "none";
+    historialBlock.style.display = "block";
+    buttonHistorial.addAttribute("disabled");
+    buttonConsulta.removeAttribute("disabled");
+  }
+};
+
+buttonConsulta.addEventListener("click", showConsulta);
+buttonHistorial.addEventListener("click", showHistorial);
+</script>
+
+{% endblock %}

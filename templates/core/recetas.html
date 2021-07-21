@@ -1,0 +1,45 @@
+{% extends 'core/index.html' %}
+{% block content %}
+<div class="row">
+<div class="col-md-4">
+  <button type="button" id='buttonReceta' class="btn btn-info" name="button">Nueva Receta</button>
+</div>
+<div class="col-md-4">
+  <button type="button" id='buttonHistorial' class="btn btn-info" name="button">Historial De Recetas</button>
+</div>
+</div>
+<div id="nuevaReceta" style="display:none">
+  <h1>Bloque de Nueva Receta</h1>
+</div>
+<div id="historialRecetas" style="display:none">
+  <h1>Bloque de Historial de Recetas</h1>
+</div>
+
+<script type="text/javascript">
+const buttonReceta = document.querySelector("#buttonReceta");
+const buttonHistorial = document.querySelector("#buttonHistorial");
+
+const consulataBlock = document.querySelector("#nuevaReceta");
+const historialBlock = document.querySelector("#historialRecetas");
+const showReceta = (e) => {
+  if (consulataBlock.style.display === 'none') {
+    consulataBlock.style.display = "block";
+    historialBlock.style.display = "none";
+    buttonReceta.addAttribute("disabled");
+    buttonHistorial.removeAttribute("disabled");
+  }
+};
+const showHistorial = (e) => {
+  if (historialBlock.style.display === 'none') {
+    consulataBlock.style.display = "none";
+    historialBlock.style.display = "block";
+    buttonHistorial.addAttribute("disabled");
+    buttonReceta.removeAttribute("disabled");
+  }
+};
+
+buttonReceta.addEventListener("click", showReceta);
+buttonHistorial.addEventListener("click", showHistorial);
+</script>
+
+{% endblock %}

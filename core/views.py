@@ -72,10 +72,75 @@ class profile_info(View):
         context['user'] = user
         return render(request, 'core/profile_info.html', context)
 
-def users_info(request):
-    User = get_user_model()
-    patients = User.objects.filter(user_type = 2)
-    context = get_type_context(request.user.user_type)
-    context['patients'] = patients
-    print(patients)
-    return render(request, 'core/users.html', context)
+
+class users_info(View):
+    def get(self, request):
+        User = get_user_model()
+        patients = User.objects.filter(user_type = 2)
+        context = get_type_context(request.user.user_type)
+        context['patients'] = patients
+        return render(request, 'core/users.html', context)
+    def post(self, request):
+        User = get_user_model()
+        context = get_type_context(request.user.user_type)
+        first_name = request.POST['first-name']
+        last_name = request.POST['last-name']
+        sexo = request.POST['sexo']
+        ci = request.POST['ci']
+        ciudad = request.POST['ciudad']
+        direccion = request.POST['direccion']
+        aseguradora = request.POST['aseguradora']
+        ocupacion = request.POST['ocupacion']
+        sangre = request.POST['sangre']
+        num_hijos = request.POST['num_hijos']
+        b_date = request.POST['b-date']
+        email = request.POST['email']
+        estado_civil = request.POST['estado_civil']
+        new_user = User(first_name = first_name, last_name=last_name, email=email, username = hash(f'{first_name}{last_name}{email}'), is_superuser = 0)
+        new_user.save()
+        new_paciente = Paciente(creator = new_user, nacimiento= b_date,cedula = ci, sexo = sexo, telefono = 2111, barrio = 'sin barrio', ciudad = ciudad,aseguradora = aseguradora,ocupacion = ocupacion,grupo_sanguineo = sangre,num_hijos = num_hijos,correo = email, estado_civil = estado_civil)
+        new_paciente.save()
+        print(new_user.id)
+        patients = User.objects.filter(user_type = 2)
+        context['patients'] = patients
+        return render(request, 'core/users.html', context)
+
+class consultas(View):
+    def get(self, request):
+        User = get_user_model()
+        patients = User.objects.filter(user_type = 2)
+        context = get_type_context(request.user.user_type)
+        context['patients'] = patients
+        return render(request, 'core/consultas.html', context)
+    def post(self, request):
+        pass
+
+class recetas(View):
+    def get(self, request):
+        User = get_user_model()
+        patients = User.objects.filter(user_type = 2)
+        context = get_type_context(request.user.user_type)
+        context['patients'] = patients
+        return render(request, 'core/recetas.html', context)
+    def post(self, request):
+        pass
+
+class citas(View):
+    def get(self, request):
+        User = get_user_model()
+        patients = User.objects.filter(user_type = 2)
+        context = get_type_context(request.user.user_type)
+        context['patients'] = patients
+        return render(request, 'core/citas.html', context)
+    def post(self, request):
+        pass
+
+class equipos(View):
+    def get(self, request):
+        User = get_user_model()
+        patients = User.objects.filter(user_type = 2)
+        context = get_type_context(request.user.user_type)
+        context['patients'] = patients
+        return render(request, 'core/equipos.html', context)
+    def post(self, request):
+        pass
